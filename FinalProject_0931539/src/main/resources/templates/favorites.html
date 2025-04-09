@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Favorite Movies</title>
+</head>
+<body>
+<h1>Favorite Movies</h1>
+
+<div th:if="${favorites.isEmpty()}">
+    <p>No favorite movies yet.</p>
+</div>
+
+<div th:each="movie : ${favorites}">
+    <h3 th:text="${movie.title}"></h3>
+    <img th:src="'https://image.tmdb.org/t/p/w200' + ${movie.posterPath}" />
+    <p th:text="${movie.overview}"></p>
+
+    <form th:action="@{'/favorites/delete/' + ${movie.id}}" method="post">
+        <button type="submit">Remove from Favorites</button>
+    </form>
+    <hr>
+</div>
+
+<a href="/">Back to Home</a>
+</body>
+</html>

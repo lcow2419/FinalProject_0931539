@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movie Catalogue - Home</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<h1>Trending Movies</h1>
+<div th:each="movie : ${movies}">
+    <h3 th:text="${movie.title}"></h3>
+    <img th:src="'https://image.tmdb.org/t/p/w200' + ${movie.poster_path}" />
+    <p th:text="${movie.overview}"></p>
+    <a th:href="@{'/movie/' + ${movie.id}}">View Details</a>
+    <hr>
+</div>
+</body>
+</html>
